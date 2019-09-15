@@ -94,7 +94,7 @@ public class CRUD {
      * @param listaPlagas
      * @return
      */
-    public static ControlPlagas buscarPorIcaPla(String ica,ArrayList<ControlPlagas>listaPlagas){
+    public static ControlPlagas buscarPorIcaPlaga(String ica,ArrayList<ControlPlagas>listaPlagas){
         
         ControlPlagas plagaRetornar;
         int cantidadPlagas = listaPlagas.size();
@@ -121,7 +121,7 @@ public class CRUD {
      * @param listaFertilizantes
      * @return
      */
-    public static ControlFertilizante buscarPorIcaFer(String ica,ArrayList<ControlFertilizante>listaFertilizantes){
+    public static ControlFertilizante buscarPorIcaFertilizante(String ica,ArrayList<ControlFertilizante>listaFertilizantes){
         
         ControlFertilizante fertilizanteRetornar;
         int cantidadPlagas = listaFertilizantes.size();
@@ -147,11 +147,11 @@ public class CRUD {
      * @param ica
      * @param listaFertilizantes
      */
-    public static void actualizarFer(String ica,ArrayList<ControlFertilizante>listaFertilizantes){
+    public static void actualizarFertilizante(String ica,ArrayList<ControlFertilizante>listaFertilizantes){
         ControlFertilizante fertilizante;
         int option;
         Scanner tecladoInt = new Scanner(System.in);
-        fertilizante = buscarPorIcaFer(ica, listaFertilizantes);
+        fertilizante = buscarPorIcaFertilizante(ica, listaFertilizantes);
         
         if(fertilizante == null){
             System.out.println("El producto no se encontro.");
@@ -181,11 +181,16 @@ public class CRUD {
         }
     }
      
-    public static void actualizarPla(String ica,ArrayList<ControlPlagas>listaPlagas){
+    /**
+     *
+     * @param ica
+     * @param listaPlagas
+     */
+    public static void actualizarPlaga(String ica,ArrayList<ControlPlagas>listaPlagas){
         ControlPlagas plaga;
         int option;
         Scanner tecladoInt = new Scanner(System.in);
-        plaga = buscarPorIcaPla(ica, listaPlagas);
+        plaga = buscarPorIcaPlaga(ica, listaPlagas);
         
         if(plaga == null){
             System.out.println("El producto no se encontro.");
@@ -203,7 +208,7 @@ public class CRUD {
                         actualizarNombre(plaga);
                         break;
                     case 3:
-                        actualizarFrecuenciaAplicaicon(plaga);
+                        actualizarFrecuenciaAplicacion(plaga);
                         break;
                     case 4:
                         actualizarPeriodoCarencia(plaga);
@@ -223,7 +228,7 @@ public class CRUD {
         plaga.setNombreProducto(nuevoNombre);
     }
     
-    private static void actualizarFrecuenciaAplicaicon(ControlPlagas plaga) {
+    private static void actualizarFrecuenciaAplicacion(ControlPlagas plaga) {
         int nuevaFrecuencia;
         Scanner tecladoInt = new Scanner(System.in);
         System.out.print("Ingrese el nuevo nombre: ");
@@ -295,5 +300,35 @@ public class CRUD {
         System.out.println("3.Actualizar frecuencia de aplicacion.");
         System.out.println("4.Actualizar la ultima fecha de aplicacion.");
         System.out.println("5.Salir.");
+    }
+    
+    private static void eliminarFertilizante(ArrayList<ControlFertilizante> listaFertilizantes){
+        ControlFertilizante fertilizanteEliminar;
+        String ica;
+        Scanner tecladoString = new Scanner(System.in);
+        System.out.print("Ingrese el ica del producto: ");
+        ica = tecladoString.nextLine();
+        fertilizanteEliminar = buscarPorIcaFertilizante(ica, listaFertilizantes);
+        
+        if(fertilizanteEliminar != null){
+            listaFertilizantes.remove(fertilizanteEliminar);
+        }else{
+            System.out.println("Producto no encontrado");
+        }
+    }
+    
+     private static void eliminarPlaga(ArrayList<ControlPlagas> listaPlagas){
+        ControlPlagas plagaEliminar;
+        String ica;
+        Scanner tecladoString = new Scanner(System.in);
+        System.out.print("Ingrese el ica del producto: ");
+        ica = tecladoString.nextLine();
+        plagaEliminar = buscarPorIcaPlaga(ica, listaPlagas);
+        
+        if(plagaEliminar != null){
+            listaPlagas.remove(plagaEliminar);
+        }else{
+            System.out.println("Producto no encontrado");
+        }
     }
 }
