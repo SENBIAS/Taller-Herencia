@@ -70,21 +70,30 @@ public class CRUD {
         
         System.out.println("Productos de tipos plagas: ");
         
-        for(int iterador = 0;iterador < cantidadListaPlagas;iterador++){
-            System.out.println("Producto #"+(iterador+1));
-            System.out.println("Frecuencia aplicacion: "+listaPlagas.get(iterador).getFrecuenciaAplicacion()+" dias");
-            System.out.println("Ica: "+listaPlagas.get(iterador).getIca());
-            System.out.println("Nombre producto: "+listaPlagas.get(iterador).getNombreProducto());
-            System.out.println("Periodo de carencia: "+listaPlagas.get(iterador).getPeriodoCarencia()+" dias");
+        if(cantidadListaPlagas > 0){
+            for(int iterador = 0;iterador < cantidadListaPlagas;iterador++){
+                System.out.println("Producto #"+(iterador+1));
+                System.out.println("Frecuencia aplicacion: "+listaPlagas.get(iterador).getFrecuenciaAplicacion()+" dias");
+                System.out.println("Ica: "+listaPlagas.get(iterador).getIca());
+                System.out.println("Nombre producto: "+listaPlagas.get(iterador).getNombreProducto());
+                System.out.println("Periodo de carencia: "+listaPlagas.get(iterador).getPeriodoCarencia()+" dias");
+            }
+        }else{
+            System.out.println("No hay productos.");
         }
         System.out.println("");
         System.out.println("Productos de tipos fertilizantes: ");
-        for(int iterador = 0;iterador < cantidadListaPlagas;iterador++){
-            System.out.println("Producto #"+(iterador+1));
-            System.out.println("Frecuencia aplicacion: "+listaFertilizantes.get(iterador).getFrecuenciaAplicacion()+" dias");
-            System.out.println("Ica: "+listaFertilizantes.get(iterador).getIca());
-            System.out.println("Nombre producto: "+listaFertilizantes.get(iterador).getNombreProducto());
-            System.out.println("Fecha ultima aplicacion: "+listaFertilizantes.get(iterador).getFechaUltimaAplicacion());
+        
+        if(cantidadListaFertilizantes > 0){
+            for(int iterador = 0;iterador < cantidadListaPlagas;iterador++){
+                System.out.println("Producto #"+(iterador+1));
+                System.out.println("Frecuencia aplicacion: "+listaFertilizantes.get(iterador).getFrecuenciaAplicacion()+" dias");
+                System.out.println("Ica: "+listaFertilizantes.get(iterador).getIca());
+                System.out.println("Nombre producto: "+listaFertilizantes.get(iterador).getNombreProducto());
+                System.out.println("Fecha ultima aplicacion: "+listaFertilizantes.get(iterador).getFechaUltimaAplicacion());
+            }
+        }else{
+            System.out.println("No hay productos.");
         }
     }
     
@@ -302,33 +311,11 @@ public class CRUD {
         System.out.println("5.Salir.");
     }
     
-    private static void eliminarFertilizante(ArrayList<ControlFertilizante> listaFertilizantes){
-        ControlFertilizante fertilizanteEliminar;
-        String ica;
-        Scanner tecladoString = new Scanner(System.in);
-        System.out.print("Ingrese el ica del producto: ");
-        ica = tecladoString.nextLine();
-        fertilizanteEliminar = buscarPorIcaFertilizante(ica, listaFertilizantes);
-        
-        if(fertilizanteEliminar != null){
-            listaFertilizantes.remove(fertilizanteEliminar);
-        }else{
-            System.out.println("Producto no encontrado");
-        }
+    public static void eliminarFertilizante(ControlFertilizante fertilizanteEliminar,ArrayList<ControlFertilizante> listaFertilizantes){
+          listaFertilizantes.remove(fertilizanteEliminar);
     }
     
-     private static void eliminarPlaga(ArrayList<ControlPlagas> listaPlagas){
-        ControlPlagas plagaEliminar;
-        String ica;
-        Scanner tecladoString = new Scanner(System.in);
-        System.out.print("Ingrese el ica del producto: ");
-        ica = tecladoString.nextLine();
-        plagaEliminar = buscarPorIcaPlaga(ica, listaPlagas);
-        
-        if(plagaEliminar != null){
-            listaPlagas.remove(plagaEliminar);
-        }else{
-            System.out.println("Producto no encontrado");
-        }
+     public static void eliminarPlaga(ControlPlagas plagaEliminar,ArrayList<ControlPlagas> listaPlagas){
+          listaPlagas.remove(plagaEliminar);
     }
 }
