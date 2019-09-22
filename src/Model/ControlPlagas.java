@@ -30,4 +30,11 @@ public class ControlPlagas extends ProductosDeControl{
     public void setPeriodoCarencia(int periodoCarencia) {
         this.periodoCarencia = periodoCarencia;
     }
+    
+    public void imprimirDatos(){
+        System.out.println("Ica: "+getIca());
+        System.out.println("Nombre producto: "+getNombreProducto());
+        System.out.println("Frecuencia aplicacion: "+getFrecuenciaAplicacion());
+        System.out.println("Periodo de carencia: "+getPeriodoCarencia());
+    }
 }
