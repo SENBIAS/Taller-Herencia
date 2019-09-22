@@ -18,33 +18,64 @@ public class Main
      */
     public static void main(String[] args) {
         int option;
+        String ica;
         Scanner tecladoInt = new Scanner(System.in);
         Inventario inventario = new Inventario();
-        
+        ProductosDeControl producto;
         do {            
             menu();
             System.out.println("Seleccione una opcion: ");
             option = tecladoInt.nextInt();
             switch (option) {
                 case 1:
-                    Inventario.menuAgregar(inventario);
+                    System.out.println("CREAR PRODUCTO.");
+                    CRUD.crearProducto(inventario.getListaProductos());
                     break;
                 case 2:
-                    Inventario.buscar(inventario);
+                    System.out.println("BUSCAR PRODUCTO.");
+                    ica = obtenerIca();
+                    producto = CRUD.bucarPorIca(ica,inventario.getListaProductos());
+                    imprimirProductoBuscado(producto);
                     break;
                 case 3:
-                    Inventario.actualizar(inventario);
+                    System.out.println("ACTUALIZAR PRODUCTO.");
+                    ica = obtenerIca();
+                    CRUD.actualizarProducto(ica, inventario.getListaProductos());
                     break;
                 case 4:
-                    Inventario.eliminar(inventario);
+                    System.out.println("ELIMINAR PRODUCTO.");
+                    ica = obtenerIca();
+                    CRUD.eliminarProducto(ica, inventario.getListaProductos());
                     break;
                 case 5:
-                    CRUD.mostrarProductos(inventario.getPlagas(), inventario.getFertilizantes());
+                    CRUD.listarProductos(inventario.getListaProductos());
                     break;
                 case 6:
                     break;
             }
         } while (option<6);
+    }
+    
+    private static void imprimirProductoBuscado(ProductosDeControl producto){
+        if(producto != null){
+            
+            if(producto instanceof ControlPlagas){
+                ((ControlPlagas) producto).imprimirDatos();
+            }else{
+                ((ControlFertilizante)producto).imprimirDatos();
+            }
+        }else{
+            System.out.println("Producto no exite.");
+        }
+    }
+    
+    private static String obtenerIca(){
+        String ica;
+        Scanner tecladoString = new Scanner(System.in);
+        System.out.print("Ingrese el ica del producto: ");
+        ica = tecladoString.nextLine();
+        
+        return ica;
     }
     
     private static void menu() {
