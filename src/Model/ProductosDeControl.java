@@ -47,7 +47,5 @@ public class ProductosDeControl {
 
     public void setFrecuenciaAplicacion(int frecuenciaAplicacion) {
         this.frecuenciaAplicacion = frecuenciaAplicacion;
-    }
-    
-    
+    }  
 }
