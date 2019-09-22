@@ -30,4 +30,10 @@ public class ControlFertilizante extends ProductosDeControl {
         this.fechaUltimaAplicacion = fechaUltimaAplicacion;
     }
     
+    public void imprimirDatos(){
+        System.out.println("Ica: "+getIca());
+        System.out.println("Nombre producto: "+getNombreProducto());
+        System.out.println("Frecuencia aplicacion: "+getFrecuenciaAplicacion());
+        System.out.println("Fecha ultima aplicacion: "+getFechaUltimaAplicacion());
+    }
 }
